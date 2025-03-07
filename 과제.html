@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스크롤을 이용한 포트폴리오</title>
+    <style>
+        /* 해결해야할 목록 : 각각의 메인~ 푸터까지 + slick 구현 */
+
+        *{margin: 0; padding: 0; box-sizing: border-box;}
+        ul{list-style: none;}
+        a{text-decoration: none;}
+        /* 임시 셋팅 */
+        h2{position: fixed; top: 30px; left: 30px; color: red;}
+
+        /* 헤드 셋팅 */
+        #head{width: 100%; height: 1000px;}
+        .firstImg{background-image: url(brawl_img/first_background.jpg);
+            background-repeat: no-repeat; background-position: center;
+            background-size: cover; width: 100%; height: 100%;}
+        #head ul{width: 100%; height: 100px; line-height: 100px;
+            margin: auto; background-color: rgba(0, 0, 0, 0.4);
+            position: fixed; top:0; text-align: center; z-index: 100;}
+        #head ul li{display: inline-block;}
+        #head ul li a{font-size: 30px; color: white; margin: 0 50px;
+            font-weight: bold;}
+        #head ul li a:hover{color:yellow !important;}
+        #head ul li a.on{color:tomato;}
+        /* 로고 셋팅 */
+        .firstLogo{width: 100px; position: absolute; opacity: 0;
+            top: 300px; left: 50%; transform: translateX(-50%);
+            transition: width 1s, opacity 1s;}
+        .firstLogo.on{width: 800px; opacity: 1;}
+
+        /* 메인 셋팅 */
+        #main{width: 100%; height: 6000px; background-color: #efefef;}
+        #introduction{height: 1500px; border: 1px solid red; position: relative;}
+        /* 비 사진 */
+        .beeBox{position: absolute; top: 500px; left: 20%; 
+            width: 337px; height: 510px; /* bee size */
+            border: 1px solid blue;}
+        .bee{position: fixed; top: 50%; left: 20%;
+             width: 15%; z-index: 10;}
+        .bee img{width: 100%; height: auto;}
+        .bee.on{position: absolute; transition: bottom 1s ease-out;
+            top: 500px; 
+            width: 337px; height: 510px;} 
+        .bee.on2{
+            position: fixed; top: 50%; 
+            width: 15%; transition: top 1s ease-in;}
+        
+        /* 게임사진 셋팅 */
+        #gamepicture{height: 1000px; position: relative;}
+        .secondImg{background-image: url(brawl_img/mortis.jpg);
+            background-repeat: no-repeat; background-position: center;
+            background-size: cover; width: 100%; height: 100%; opacity: 0.3;}
+        .slick{position: absolute; top: 200px; left: 200px; width: 500px; height: 300px;
+            border: 1px solid blue; float: left;}
+        .slick div{width: 100px; height: 20px;}
+        #download{height: 1000px; border: 1px solid red;}
+
+
+        /* 푸터 셋팅 */
+        #footer{width: 100%;height: 1000px; border: 1px solid red;}
+    </style>
+    <link rel="stylesheet" href="slick/slick.css">
+    <link rel="stylesheet" href="slick/slick-theme.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            // 헤드 스크롤 함수
+            $(window).on('scroll',function(){
+                var sTopHead = $(this).scrollTop();
+                // 임시 셋팅
+                $('h2').text(sTopHead);
+
+                // 로고 움직임
+                if(sTopHead>=200 && sTopHead<=1000){
+                    $('.firstLogo').addClass('on');
+                }else{
+                    $('.firstLogo').removeClass('on');
+                }
+
+                // 헤드 리스트 영역 색상 - 조건문 안쓰는걸로 수정필요
+                if(sTopHead >=0 && sTopHead <1000){
+                    $('#head ul li a').removeClass('on');
+                    $('.menu1').addClass('on');
+                }else if(sTopHead >=1000 && sTopHead <2500){
+                    $('#head ul li a').removeClass('on');
+                    $('.menu2').addClass('on');
+                }else if(sTopHead >=2500 && sTopHead <3500){
+                    $('#head ul li a').removeClass('on');
+                    $('.menu3').addClass('on');
+                }else if(sTopHead >=3500 && sTopHead <4500){
+                    $('#head ul li a').removeClass('on');
+                    $('.menu4').addClass('on');
+                }else{
+                    $('#head ul li a').removeClass('on');
+                    $('.menu5').addClass('on');
+                }
+            });
+
+            // 헤드 ul 마우스 함수
+            $('#head ul').mouseenter(function() {
+                $(this).css('background-color', 'rgba(0, 0, 0, 1)');
+            });
+            $('#head ul').mouseleave(function() {
+                $(this).css('background-color', 'rgba(0, 0, 0, 0.4)');
+            });
+
+            // 헤드 li 클릭 함수
+            $('li a').click(function(){
+                // e.preventDefault(); // 기본적인 앵커 링크 동작을 방지
+                var targetHref = $(this).attr('href');
+                var targetTop = $(targetHref).offset().top; 
+                $('html, body').animate({scrollTop: targetTop},1000, 'swing');
+                $('#head ul li a').removeClass('on');
+                $(this).addClass('on');
+            });
+
+
+            // 메인 스크롤 함수
+            $(window).on('scroll',function(){
+                // bee 사진의 조건문
+                var sTopMain = $(window).scrollTop();
+                if(sTopMain < 900){
+                    // 첫 번째 상태 (초기 상태)
+                    $('.bee').removeClass('on on2') // 'on'과 'on2' 클래스 모두 제거
+                } else if(sTopMain >= 900 && sTopMain < 1400){
+                    // 두 번째 상태 (on 클래스 추가)
+                    $('.bee').addClass('on').removeClass('on2');
+                } else if(sTopMain >= 1400){
+                    // 세 번째 상태 (on2 클래스 추가)
+                    $('.bee').addClass('on2').removeClass('on');
+                }
+            });
+            $('.slick').slick({
+                dots:true,
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>0</h2>
+    <div id="head">
+        <div class="firstImg"></div>
+        <ul>
+            <li><a href="#head" class="menu1">처음으로</a></li>
+            <li><a href="#introduction" class="menu2">자기소개</a></li>
+            <li><a href="#gamepicture" class="menu3">게임사진</a></li>
+            <li><a href="#download" class="menu4">다운로드</a></li>
+            <li><a href="#contact" class="menu5">연락처</a></li>
+        </ul>
+        <img class="firstLogo"src="brawl_img/logo.png">
+    </div>
+    <div id="main">
+        <div id="introduction">자기소개입니다
+            <div class="beeBox"></div>
+            <div class="bee"><img src="brawl_img/bee.png"></div>
+        </div>
+        
+        <div id="gamepicture">
+            <div class="secondImg"></div>
+            <div class="slick">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+            </div>
+        </div>
+        
+
+        <div id="download">다운로드입니다
+
+        </div>
+    </div>
+    <div id="footer">
+        <div id="contact">연락처입니다</div>
+    </div>
+</body>
+</html>

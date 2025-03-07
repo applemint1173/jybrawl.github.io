@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자동스크롤</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        body{font-size: 13px; font-family: 'Malgun Gothic', Arial, sams-serif;
+            background-color: #222; color: #ccc;}
+        ul{list-style: none;}
+
+        #wrap{width: 1000px; margin: auto;}
+        h2{position: fixed; top: 30px; left: 30px; color: red;}
+        nav{position: fixed; right: 50px; top: 50%; transform: translateY(-50%);}
+        li{margin: 10px 0;}
+        li a{display: block; width: 20px; height: 20px; border-radius: 50%;
+            background-color: white;}
+        li a.on{background-color: yellow;}
+
+        #content{position: relative;}
+        section{padding: 100px 10px 0; border: 1px solid red; position: absolute;
+            opacity: 0.1; transition: all 0.5s ease-in;}
+        section h1{font-size: 60px; margin-bottom: 30px;}
+        section#sec1{top: 0;}
+        section#sec2{top: 1100px;}
+        section#sec3{top: 2200px;}
+        section#sec4{top: 3300px; height: 1500px;}
+        #sec1.on{opacity: 1;}
+        #sec2.on{opacity: 1;}
+        #sec3.on{opacity: 1;}
+        #sec4.on{opacity: 1;}
+        
+        #phone{position: absolute; top: 1400px; left: 30%; z-index: 10;
+            transition: all 1s ease;}
+        #phone.on{top: 2500px; left: 30%;}
+        #phone.on2{top: 3600px; left: 60%;}
+        
+        /* 전체 페이지 스크롤을 부드럽게 만듭니다 - GPT-animate사용 없이 가능 */
+        /* html {scroll-behavior: smooth;} */
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $(window).on('scroll',function(){
+                var sTop = $(this).scrollTop();
+                $('h2').text(sTop);
+
+                // // GTP 배열 이용
+                // // 모든 섹션의 top 값을 가져옴
+                // var breakpoints = [];
+                // $('section').each(function () {
+                //     breakpoints.push($(this).offset().top); // 각 섹션의 top 값을 breakpoints 배열에 저장
+                // });
+                // // 메뉴 항목의 클래스 리스트를 가져옴
+                // var menuItems = $('nav li a');
+                // // 현재 스크롤 위치에 맞는 섹션의 인덱스를 찾음
+                // var currentIndex = -1;
+                // for (var i = 0; i < breakpoints.length; i++) {
+                //     if (sTop >= breakpoints[i] && sTop < (breakpoints[i + 1] || Infinity)) {
+                //         currentIndex = i;
+                //         break;
+                //     }
+                // }
+                // // 모든 메뉴에서 'on' 클래스 제거
+                // menuItems.removeClass('on');
+                // // 해당 메뉴에 'on' 클래스 추가
+                // if (currentIndex !== -1) {
+                //     $(menuItems[currentIndex]).addClass('on');
+                // }
+
+                // // JY 조건문
+                // if(sTop >=0 && sTop <1100){
+                //     $('li a').removeClass('on');
+                //     $('.menu1').addClass('on');
+                // }else if(sTop >=1100 && sTop <2200){
+                //     $('li a').removeClass('on');
+                //     $('.menu2').addClass('on');
+                // }else if(sTop >=2200 && sTop <3300){
+                //     $('li a').removeClass('on');
+                //     $('.menu3').addClass('on');
+                // }else{
+                //     $('li a').removeClass('on');
+                //     $('.menu4').addClass('on');
+                // }
+            });
+
+            // 새로고침시 맨 위로
+            $('html, body'). animate({scrollTop: 0},50);
+            
+            // // GPT html 값 이용
+            // $('li a').click(function(){
+            //     // e.preventDefault(); // 기본적인 앵커 링크 동작을 방지
+            //     var targetHref = $(this).attr('href'); // 클릭한 링크의 href 값(예: #sec1)
+            //     var targetOffset = $(targetHref).offset().top; // 해당 섹션의 top 위치를 계산
+            //     $('html, body').animate({scrollTop: targetOffset},1000, 'swing');
+            //     $('li a').removeClass('on');
+            //     $(this).addClass('on');
+            // });
+
+            // 버튼 클릭을 통한 이동시 버튼의 불 켜주기
+            $('.menu1').click(function(){
+                $('html, body').animate({scrollTop:0},1000, 'swing');
+                $('li a').removeClass('on');
+                $(this).addClass('on');
+            });
+            $('.menu2').click(function(){
+                $('html, body').animate({scrollTop:1100},1000, 'swing');
+                $('li a').removeClass('on');
+                $(this).addClass('on');
+            });
+            $('.menu3').click(function(){
+                $('html, body').animate({scrollTop:2200},1000, 'swing');
+                $('li a').removeClass('on');
+                $(this).addClass('on');
+            });
+            $('.menu4').click(function(){
+                $('html, body').animate({scrollTop:3300},1000, 'swing');
+                $('li a').removeClass('on');
+                $(this).addClass('on');
+            });
+
+            // 스크롤을 통한 이동시 버튼의 불 켜주기
+            $(window).on('scroll',function(){
+                if($(window).scrollTop() < 1100){
+                    $('li a').removeClass('on');
+                    $('.menu1').addClass('on');
+                    $('section').removeClass('on');
+                    $('#sec1').addClass('on');
+                }else if($(window).scrollTop() < 2200){
+                    $('li a').removeClass('on');
+                    $('.menu2').addClass('on');
+                    $('section').removeClass('on');
+                    $('#sec2').addClass('on');
+                }else if($(window).scrollTop() < 3300){
+                    $('li a').removeClass('on');
+                    $('.menu3').addClass('on');
+                    $('section').removeClass('on');
+                    $('#sec3').addClass('on');
+                }else{
+                    $('li a').removeClass('on');
+                    $('.menu4').addClass('on');
+                    $('section').removeClass('on');
+                    $('#sec4').addClass('on');
+                }
+
+                // 아이폰의 조건문
+                if($(window).scrollTop() < 1550){
+                    $('#phone').removeClass();
+                }else if($(window).scrollTop() >= 1550
+                    && $(window).scrollTop() < 2700){
+                    $('#phone').addClass('on');
+                    $('#phone').removeClass('on2');
+                }else if($(window).scrollTop() >= 2700){
+                    $('#phone').addClass('on2');
+                    $('#phone').removeClass('on');
+                }
+            });
+
+            // 강제로 이벤트를 적용하는 방법 - on class 적용위함
+            $(window).trigger('scroll');
+
+            // // GPT - 새로고침 시 해당 스크롤 탑에 on class 적용
+            // $(window).on('load', function() {
+            //     var sTop = $(this).scrollTop();
+            //     var menuItems = $('nav li a');
+                
+            //     if(sTop < 1100){
+            //         menuItems.removeClass('on');
+            //         $('.menu1').addClass('on');
+            //     } else if(sTop < 2200){
+            //         menuItems.removeClass('on');
+            //         $('.menu2').addClass('on');
+            //     } else if(sTop < 3300){
+            //         menuItems.removeClass('on');
+            //         $('.menu3').addClass('on');
+            //     } else {
+            //         menuItems.removeClass('on');
+            //         $('.menu4').addClass('on');
+            //     }
+            // });
+        });
+    </script>
+</head>
+<body>
+    <div id="wrap">
+        <h2>0</h2>
+        <nav>
+            <ul>
+                <li><a href="#sec1" class="menu1"></a></li>
+                <li><a href="#sec2" class="menu2"></a></li>
+                <li><a href="#sec3" class="menu3"></a></li>
+                <li><a href="#sec4" class="menu4"></a></li>
+            </ul>
+        </nav>
+        <!-- 여기에 아이폰 넣어줌.. -->
+        <div id="phone"><img src="iphone2.png" width="150" height="auto"></div>
+        <div id="content">
+            <section id="sec1">
+                <header><h1>01.About Me</h1></header>
+                <article>
+                    <p>
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                    </p>
+                </article>
+            </section>
+            <section id="sec2">
+                <header><h1>02.Portfolio</h1></header>
+                <article>
+                    <p>
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                    </p>
+                </article>
+            </section>
+            <section id="sec3">
+                <header><h1>03.Work Story</h1></header>
+                <article>
+                    <p>
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                    </p>
+                </article>
+            </section>
+            <section id="sec4">
+                <header><h1>04.Free Board</h1></header>
+                <article>
+                    <p>
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                        우리는 달려간다 이상한 나라로 미나가 잡혀있는 마왕의 소굴로...
+                    </p>
+                </article>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
+
+<!-- 
+<@@@>
+웹페이지..
+간단한 회사 소개페이지..
+이벤트용 페이지..
+포트폴리오..
+<@@@>
+-->

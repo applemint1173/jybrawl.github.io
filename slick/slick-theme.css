@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@charset 'UTF-8';
 /* Slider */
 .slick-loading .slick-list
 {
@@ -11,11 +11,9 @@
     font-family: 'slick';
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
 
     src: url('./fonts/slick.eot');
-    src: url('./fonts/slick.eot?#iefix') format('embedded-opentype'), url('./fonts/slick.woff2') format('woff2'), url('./fonts/slick.woff') format('woff'), url('./fonts/slick.ttf') format('truetype'), url('./fonts/slick.svg#slick') format('svg');
-    font-display: swap;
+    src: url('./fonts/slick.eot?#iefix') format('embedded-opentype'), url('./fonts/slick.woff') format('woff'), url('./fonts/slick.ttf') format('truetype'), url('./fonts/slick.svg#slick') format('svg');
 }
 /* Arrows */
 .slick-prev,
@@ -69,7 +67,7 @@
 .slick-next:before
 {
     font-family: 'slick';
-    font-size: 40px; /* 여기 수정해봄.. 20px */
+    font-size: 20px;
     line-height: 1;
 
     opacity: .75;
@@ -88,14 +86,9 @@
     right: -25px;
     left: auto;
 }
-.slick-prev:before /* 여기를 수정함.. 기존 화살표를 내 디자인으로 교체함 */
+.slick-prev:before
 {
-    content: ''; /* content: '←'; */
-    width: 50px;
-    height: 50px;
-    background-image: url("../images/left.png");
-    position: absolute;
-    top: 0; left: 0;
+    content: '←';
 }
 [dir='rtl'] .slick-prev:before
 {
@@ -111,14 +104,9 @@
     right: auto;
     left: -25px;
 }
-.slick-next:before /* 여기도 수정함 */
+.slick-next:before
 {
-    content: ''; /* content: '→'; */
-    width: 50px;
-    height: 50px;
-    background-image: url("../images/right.png");
-    position: absolute;
-    top: 0; left: 0;
+    content: '→';
 }
 [dir='rtl'] .slick-next:before
 {
@@ -190,7 +178,7 @@
 .slick-dots li button:before
 {
     font-family: 'slick';
-    font-size: 12px; /* 여기서 내용을 바꿔봄 기존 6px */
+    font-size: 6px;
     line-height: 20px;
 
     position: absolute;

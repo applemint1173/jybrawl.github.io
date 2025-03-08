@@ -22,6 +22,16 @@
     <script src="js/main.js"></script>
     <script src="js/footer.js"></script>
     <script src="js/mobile.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var metaViewport = document.querySelector('meta[name="viewport"]');
+            var deviceWidth = window.innerWidth;
+            if(deviceWidth < 800) {
+                 var scale = deviceWidth / 800;
+                 metaViewport.setAttribute("content", "width=800, initial-scale=" + scale + ", minimum-scale=" + scale + ", maximum-scale=" + scale);
+            }
+        });
+        </script>
 </head>
 
 <body>

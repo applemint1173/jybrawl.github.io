@@ -1,70 +1,325 @@
 /* 메인 셋팅 */
-#main{width: 100%; height: 3500px; background-color: #efefef;}
-#introduction{height: 1500px; border: 1px solid red; position: relative;}
+#main {
+    width: 100%;
+    height: 4100px;
+    background-color: white;
+}
+
+#introduction {
+    height: 1300px;
+    position: relative;
+}
+
 /* 자기소개 셋팅 */
-.beeBox{position: absolute; top: 500px; left: 20%; 
-    width: 337px; height: 510px; /* bee size */
-    border: 1px solid blue;}
-.bee{position: fixed; top: 50%; left: 20%;
-     width: 15%; z-index: 10;}
-.bee img{width: 100%; height: auto;}
-.bee.on{position: absolute; transition: bottom 1s ease-out;
-    top: 500px; 
-    width: 337px; height: 510px;} 
-.bee.on2{
-    position: fixed; top: 50%; 
-    width: 15%; transition: top 1s ease-in;}
-.bee.on3{opacity: 0; transition: all 1s ease;}
-/* 게임사진 셋팅 */
-#gamepicture{
+.introductionBox {
+    position: absolute;
+    left: 50%;
+    margin-left: -600px;
+    width: 1200px;
+    height: 1100px;
+    top: 100px;
+    border: 0;
+    border-radius: 30px;
+}
+
+.characterBox {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.characterBox video {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.introductionBox.on {
+    position: fixed;
+    width: 1200px;
+    height: 1100px;
+    top: -100px;
+}
+
+.introductionBox.on2 {
+    position: absolute;
+    width: 1200px;
+    height: 1100px;
+    top: 900px;
+}
+
+.leftList {
+    position: absolute;
+    top: 200px;
+    right: 600px;
+}
+
+.leftList li {
+    width: 200px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 25px;
+    margin-bottom: 20px;
+    text-align: right;
+    padding-right: 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    background-color: white;
+}
+
+.rightList {
+    position: absolute;
+    top: 200px;
+    right: 150px;
+}
+
+.rightList li {
+    width: 400px;
+    height: 80px;
+    padding-left: 20px;
+    font-size: 20px;
+    margin-bottom: 20px;
     text-align: center;
-    width: 100%; height: 1000px; position: relative;}
-.secondImg{
+    border-radius: 30px;
+    font-weight: bold;
+    background-color: white;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.centerList {
+    position: absolute;
+    top: 600px;
+    right: 620px;
+    z-index: 12;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.bottomList {
+    position: absolute;
+    top: 550px;
+    right: 150px;
+    width: 650px;
+    height: 400px;
+    background-color: white;
+    border: 0;
+    border-radius: 30px;
+}
+
+.bottomList li {
+    font-size: 20px;
+    padding: 10px;
+    font-weight: bold;
+    margin: 0 50px;
+}
+
+.bottomList li:nth-of-type(1) {
+    margin-top: 100px;
+}
+
+
+/* 게임사진 셋팅 */
+#gamepicture {
+    text-align: center;
+    margin-top: 800px;
+    width: 100%;
+    height: 1000px;
+    position: relative;
+    border-top: 1px solid transparent;
+}
+
+.secondImg {
     position: absolute;
     background-image: url(../brawl_img/mortis.jpg);
-    background-repeat: no-repeat; background-position: center;
-    background-size: cover; width: 100%; height: 100%; opacity: 0.3;}
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    background-attachment: fixed;
+}
 
-    .slick1, .slick2 {
-        display: inline-block;
-        justify-content: center;
-        width: 500px;
-        height: 300px;
-        border: 4px solid white;
-        border-radius: 30px;
-        margin: 200px 50px;
-    }
-    
-    /* slick-slide 내부의 이미지 스타일 (slick의 기본 슬라이드 구조 활용) */
-    .slick-slide img {
-        width: auto;
-        height: 300px;
-        display: block;    /* inline 요소 문제 해결 */
-        margin: 0 auto;    /* 중앙 정렬 */
-    }
+/* 슬릭 이미지 셋팅팅 */
+.slickBox1,
+.slickBox2 {
+    width: 500px;
+    display: inline-block;
+    text-align: center;
+    margin: 200px 50px;
+}
 
+.slick1,
+.slick2 {
+    width: 100%;
+}
+
+.slick-list {
+    border: 4px solid white;
+    border-radius: 30px;
+    overflow: hidden;
+    height: 300px;
+    cursor: pointer;
+}
+
+.slick-slide img {
+    width: 100%;
+    height: 300px;
+    display: block;
+    margin: 0 auto;
+
+}
+
+/* modal 셋팅 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 200px auto;
+    border: 4px solid white;
+    border-radius: 30px;
+    width: 1000px;
+    position: relative;
+    overflow: hidden;
+}
+
+#modalImage {
+    max-width: 1000px;
+    /* 최대 너비 1000px */
+    width: 100%;
+    /* 부모 너비에 맞게 100% 사용 */
+    display: block;
+    margin: 0 auto;
+    /* 좌우 자동 마진으로 중앙 정렬 */
+
+}
+
+.close-btn {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    top: 30px;
+    right: 30px;
+    font-size: 50px;
+    cursor: pointer;
+    background-color: white;
+    border: 4px solid black;
+    border-radius: 50%;
+    font-weight: bold;
+
+}
+
+.close-btn::before {
+    content: "\00d7";
+    /* Unicode 00D7는 × 기호 */
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 30px;
+    /* 요소의 높이와 동일하게 맞춰서 수직 중앙 정렬 */
+    font-size: 50px;
+}
+
+.close-btn:hover {
+    color: tomato;
+}
+
+
+.follow {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: -100px;
+}
+
+.follow p {
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.icon img {
+    margin: 20px;
+    cursor: pointer;
+}
 
 
 /* 다운로드 셋팅 */
-#download{height: 1000px; background-image: url(../brawl_img/last_background.jpg);
-    background-repeat: no-repeat; background-position: center;
-    background-size: cover; position: relative;}
-.downloadBox{
-    position: absolute; width: 1200px; height: 600px; border: 0;
-    border-radius: 30px; background-color: white;
-    top: 50%; left: 50%; transform: translate(-50%,-50%);
+#download {
+    height: 1000px;
+    background-image: url(../brawl_img/last_background.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.downloadBox {
+    position: absolute;
+    width: 1200px;
+    height: 600px;
+    border: 0;
+    border-radius: 30px;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 10;
 }
-.videoBox{
-    width: 600px; height: 500px;
+
+.videoBox {
+    width: 600px;
+    height: 500px;
     margin: 50px;
-    border: 6px solid rgb(0,0,0,0.5); border-radius: 30px;
+    border: 6px solid rgb(0, 0, 0, 0.5);
+    border-radius: 30px;
     overflow: hidden;
 }
-.videoBox video{
-    width: 100%; height: 100%;
+
+.videoBox video {
+    width: 100%;
+    height: 100%;
 }
-.downloadBox p{position: absolute; top: 200px; right: 100px; width: 300px; text-align: center;
-font-size: 40px; font-weight: bold; font-family: Arial, Helvetica, sans-serif;}
-.downloadBox img{position: absolute; top: 350px; right: 100px; width: 300px;
-    cursor: pointer;}
+
+.downloadBox p {
+    position: absolute;
+    top: 200px;
+    right: 100px;
+    width: 300px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.downloadBox img {
+    position: absolute;
+    top: 350px;
+    right: 100px;
+    width: 300px;
+    cursor: pointer;
+}
+
+.downloadBox img:hover {
+    transform: scale(1.2);
+    transition: 0.3s ease;
+}

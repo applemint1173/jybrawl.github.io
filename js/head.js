@@ -1,6 +1,7 @@
 $(function () {
     // 헤드 스크롤 함수
     $(window).on('scroll', function () {
+
         var sTopHead = $(this).scrollTop();
         // 임시 셋팅
         $('h2').text(sTopHead);
@@ -22,7 +23,7 @@ $(function () {
         } else if (sTopHead >= 2400 && sTopHead < 3400) {
             $('#head ul li a').removeClass('on');
             $('.menu3').addClass('on');
-        } else if (sTopHead >= 3400 && sTopHead < 4081) {
+        } else if (sTopHead >= 3400 && sTopHead < 3650) {
             $('#head ul li a').removeClass('on');
             $('.menu4').addClass('on');
         } else {
@@ -44,7 +45,7 @@ $(function () {
         // e.preventDefault(); // 기본적인 앵커 링크 동작을 방지
         var targetHref = $(this).attr('href');
         var targetTop = $(targetHref).offset().top;
-        $('html, body').animate({ scrollTop: targetTop }, 1000, 'swing');
+        $('html, body').animate({ scrollTop: targetTop }, 600, 'swing');
         $('#head ul li a').removeClass('on');
         $(this).addClass('on');
     });

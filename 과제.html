@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,47 +12,96 @@
     <link rel="stylesheet" href="css/head.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/mobile.css">
     <!-- 엔진 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"></script>
     <script src="slick/slick.js"></script>
     <!-- JQUERY 코드 -->
     <script src="js/head.js"></script>
     <script src="js/main.js"></script>
     <script src="js/footer.js"></script>
+    <script src="js/mobile.js"></script>
 </head>
+
 <body>
-    <h2>0</h2>
+    <!-- <h2>0</h2> -->
     <div id="head">
         <div class="firstImg"></div>
         <ul>
             <li><a href="#head" class="menu1">처음으로</a></li>
-            <li><a href="#introduction" class="menu2">자기소개</a></li>
+            <li><a href="#introduction" class="menu2">기능소개</a></li>
             <li><a href="#gamepicture" class="menu3">게임사진</a></li>
             <li><a href="#download" class="menu4">다운로드</a></li>
-            <li><a href="#contact" class="menu5">연락처</a></li>
+            <li><a href="#footer" class="menu5">연락처</a></li>
         </ul>
-        <img class="firstLogo"src="brawl_img/logo.png">
+        <img class="firstLogo" src="brawl_img/logo.png">
     </div>
     <div id="main">
-        <div id="introduction">자기소개입니다
-            <div class="beeBox"></div>
-            <div class="bee"><img src="brawl_img/bee.png"></div>
+        <div id="introduction">
+            <div class="introductionBox">
+                <div class="characterBox">
+                    <video src="brawl_img/introductionVideo.mp4"></video>
+                </div>
+                <ul class="leftList">
+                    <li>제작자</li>
+                    <li>프로젝트 소개</li>
+                    <li>제작 기술</li>
+                </ul>
+                <ul class="rightList">
+                    <li>박지영</li>
+                    <li>스크롤과 버튼을 이용한 여러 반응과<br>
+                        SLICK을 이용한 반응형 웹 디자인
+                    </li>
+                    <li>HTML, CSS, JQUERY</li>
+                </ul>
+                <p class="centerList">구현 내용</p>
+                <ul class="bottomList">
+                    <li>1. scrollTop으로 아이콘 확대 </li>
+                    <li>2. scrollTop과 position을 통한 이미지와 화면 고정기능</li>
+                    <li>3. Slick을 이용하여 이미지 슬라이드 기능 탑재 </li>
+                    <li>4. 저장된 영상 플레이 및 url 실행</li>
+                    <li>5. 픽셀에 따른 UI 변화 [window 모드, mobile 모드]</li>
+                </ul>
+            </div>
         </div>
-        
+
         <div id="gamepicture">
             <div class="secondImg"></div>
-            <div class="slick1">
-                <div><img src="brawl_img/first_background.jpg"></div>
-                <div><img src="brawl_img/mortis.jpg"></div>
-                <div><img src="brawl_img/first_background.jpg"></div>
+            <div class="slickBox1">
+                <div class="slick1">
+                    <div><img src="brawl_img/slickimg1.jpg"></div>
+                    <div><img src="brawl_img/slickimg7.jpg"></div>
+                    <div><img src="brawl_img/slickimg2.jpg"></div>
+                    <div><img src="brawl_img/slickimg3.jpg"></div>
+                </div>
             </div>
-            <div class="slick2">
-                <div><img src="brawl_img/first_background.jpg"></div>
-                <div><img src="brawl_img/mortis.jpg"></div>
-                <div><img src="brawl_img/first_background.jpg"></div>
+            <div class="slickBox2">
+                <div class="slick2">
+                    <div><img src="brawl_img/slickimg5.webp"></div>
+                    <div><img src="brawl_img/slickimg4.jpg"></div>
+                    <div><img src="brawl_img/slickimg6.jpg"></div>
+                </div>
+            </div>
+            <div id="readmeModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn"></span>
+                    <img id="modalImage" src="" alt="확대 이미지">
+                </div>
+            </div>
+            <div class="follow">
+                <p>FOLLOW BRAWL STARS ON</p>
+                <div class="icon">
+                    <img src="brawl_img/follow1.webp">
+                    <img src="brawl_img/follow2.webp">
+                    <img src="brawl_img/follow3.webp">
+                    <img src="brawl_img/follow4.webp">
+                    <img src="brawl_img/follow5.webp">
+                    <img src="brawl_img/follow6.webp">
+                </div>
             </div>
         </div>
-    
+
         <div id="download">
             <div class="downloadBox">
                 <div class="videoBox">
@@ -65,7 +115,21 @@
         </div>
     </div>
     <div id="footer">
-        <div id="contact">연락처입니다</div>
+        <div class="footer">
+            <p>© 2025 Ji Young Park. All Rights Reserved. / Contact : 010-6788-1173</p>
+            <p>본 페이지에 사용된 모든 영상 및 이미지는
+                브롤스타즈 공식 홈페이지의 자료를 참고하여
+                제작되었음을 밝힙니다. <br>해당 콘텐츠는 상업적 목적으로 이용되지 않으며,
+                학습을 위해 공유하는 비상업적 공개 자료임을 알려드립니다. <br>
+                모든 저작권은 원 저작자에게 있음을 다시 한 번 확인해 주시기 바랍니다.</p>
+        </div>`
+    </div>
+
+    <div id="mobile-menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
 </body>
+
 </html>

@@ -20,6 +20,7 @@ h2 {
     top: 30px;
     left: 30px;
     color: red;
+    z-index: 1000;
 }
 
 /* 헤드 셋팅 */

@@ -26,9 +26,9 @@
         document.addEventListener("DOMContentLoaded", function(){
             var metaViewport = document.querySelector('meta[name="viewport"]');
             var deviceWidth = window.innerWidth;
-            if(deviceWidth < 800) {
-                 var scale = deviceWidth / 800;
-                 metaViewport.setAttribute("content", "width=800, initial-scale=" + scale + ", minimum-scale=" + scale + ", maximum-scale=" + scale);
+            if(deviceWidth < 600) {
+                 var scale = deviceWidth / 600;
+                 metaViewport.setAttribute("content", "width=600, initial-scale=" + scale + ", minimum-scale=" + scale + ", maximum-scale=" + scale);
             }
         });
         </script>
